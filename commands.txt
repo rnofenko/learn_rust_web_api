@@ -3,3 +3,8 @@ docker-compose up -d --build
 docker-compose up -d
 docker-compose ps
 docker-compose logs postgres
+docker-compose exec app diesel setup
+docker-compose exec app diesel migration generate create_rustaceans
+docker-compose exec app diesel migration generate create_crates
+docker-compose exec app diesel migration run
+docker-compose exec app diesel migration revert
