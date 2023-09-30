@@ -1,12 +1,9 @@
-use diesel::PgConnection;
+use crate::routes::DbConn;
 
 mod models;
 mod schema;
 mod repositories;
 mod routes;
-
-#[rocket_sync_db_pools::database("postgres")]
-pub struct  DbConn(PgConnection);
 
 #[rocket::main]
 async fn main() {
@@ -18,6 +15,12 @@ async fn main() {
             routes::rustaceans::delete_rustacean,
             routes::rustaceans::create_rustacean,
             routes::rustaceans::update_rustacean,
+
+            routes::crates::get_crates,
+            routes::crates::view_crate,
+            routes::crates::delete_crate,
+            routes::crates::create_crate,
+            routes::crates::update_crate,
         ])
         .attach(DbConn::fairing())
         .launch()
