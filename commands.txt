@@ -3,8 +3,16 @@ docker-compose up -d --build
 docker-compose up -d
 docker-compose ps
 docker-compose logs postgres
+
 docker-compose exec app diesel setup
 docker-compose exec app diesel migration generate create_rustaceans
 docker-compose exec app diesel migration generate create_crates
 docker-compose exec app diesel migration run
 docker-compose exec app diesel migration revert
+
+
+docker-compose exec app cargo run
+
+docker-compose exec app curl 127.0.0.1:8000/rustaceans
+docker-compose exec app curl 127.0.0.1:8000/rustaceans -d '{"name":"John","email":"john@mail.com"}' -H 'content-type: application/json'
+docker-compose exec app curl 127.0.0.1:8000/rustaceans/1 -X PUT -d '{"name":"John2","email":"john@mail.com"}' -H 'content-type: application/json'
