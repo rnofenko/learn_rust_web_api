@@ -1,7 +1,10 @@
-use chrono::NaiveDateTime;
-use diesel::{prelude::{Insertable, Queryable}, query_builder::AsChangeset};
-use serde::{Deserialize, Serialize};
 use crate::schema::*;
+use chrono::NaiveDateTime;
+use diesel::{
+    prelude::{Insertable, Queryable},
+    query_builder::AsChangeset,
+};
+use serde::{Deserialize, Serialize};
 
 #[derive(Queryable, AsChangeset, Deserialize, Serialize)]
 pub struct Rustacean {
@@ -18,6 +21,21 @@ pub struct Rustacean {
 pub struct NewRustacean {
     pub name: String,
     pub email: String,
+}
+
+#[derive(Queryable, AsChangeset, Deserialize, Serialize)]
+pub struct Person {
+    #[serde(skip_deserializing)]
+    pub id: i32,
+    pub name: String,
+    #[serde(skip_deserializing)]
+    pub created_at: NaiveDateTime,
+}
+
+#[derive(Insertable, Deserialize)]
+#[diesel(table_name=persons)]
+pub struct NewPerson {
+    pub name: String,
 }
 
 #[derive(Queryable, AsChangeset, Deserialize, Serialize)]

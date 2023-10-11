@@ -1,0 +1,28 @@
+day event
+    note
+    time
+
+month event
+    note
+    time from?
+    date from
+    time to?
+    date to
+
+todo event
+    note
+
+location
+    address
+    url link
+
+history event
+    location_id
+    visit_time
+    feedback
+    photo link
+    event type
+    people
+
+change_event
+    id

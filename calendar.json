@@ -1,0 +1,34 @@
+{
+  "place": {
+    "id": "number",
+    "name": "string",
+    "web_page": "string",
+    "location_link": "string",
+    "location_address": "string",
+    "description": "string",
+    "coords": ["float"],
+    "photo_album_url": "string",
+    "tags": ["string"]
+  },
+  "reservation": {
+    "id": "number",
+    "place_id": "number",
+    "data_from": "date",
+    "date_to": "date",
+    "people_ids": ["number"],
+    "tags": ["string"]
+  },
+  "feedback": {
+    "id": "number",
+    "reservation_id": "number",
+    "photo_album_url": "string"
+  },
+  "person": {
+    "id": "number",
+    "name": "string"
+  },
+  "tag": {
+    "id": "number",
+    "name": "string"
+  }
+}

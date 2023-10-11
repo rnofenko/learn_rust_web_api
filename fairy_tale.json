@@ -1,0 +1,25 @@
+{
+    "tale": {
+        "id": "number",
+        "size": "number",
+        "content_parts": "number"
+    },
+    "content": {
+        "id": "number",
+        "source_id": "number",
+        "text": "string"
+    },
+    "user": {
+        "id": "number",
+        "name": "string",
+        "password_hash": "string",
+        "password_salt": "string"
+    },
+    "bookmarks": {
+        "id": "number",
+        "tale_id": "number",
+        "pos": "number",
+        "timestamp": "daytime",
+        "user_id": "number"
+    }
+}

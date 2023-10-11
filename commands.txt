@@ -12,6 +12,7 @@ docker-compose exec app diesel migration revert
 
 
 docker-compose exec app cargo run
+docker-compose exec app cargo test
 
 docker-compose exec app curl 127.0.0.1:8000/rustaceans
 docker-compose exec app curl 127.0.0.1:8000/rustaceans -d '{"name":"John","email":"john@mail.com"}' -H 'content-type: application/json'
