@@ -7,6 +7,8 @@ use rocket::{
 use crate::repos::person::PersonRepo;
 use crate::{models::NewPerson, DbConn};
 
+use super::server_error;
+
 #[rocket::post("/person", format = "json", data = "<new_person>")]
 pub async fn create_person(
     new_person: Json<NewPerson>,
@@ -15,7 +17,7 @@ pub async fn create_person(
     db.run(move |c| {
         PersonRepo::create(c, new_person.into_inner())
             .map(|person| Custom(Status::Created, json!(person)))
-            .map_err(|_| Custom(Status::InternalServerError, json!("Error")))
+            .map_err(|e| server_error(e.into()))
     })
     .await
 }

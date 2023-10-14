@@ -67,6 +67,26 @@ fn test_create_crate() {
 }
 
 #[test]
+fn test_create_crate_when_rustacean_does_not_exist() {
+    // Setup
+    let client = Client::new();
+
+    // Test
+    let response = client
+        .post(format!("{}/crates", common::APP_HOST))
+        .json(&json!({
+            "rustacean_id": 99999,
+            "code": "foo",
+            "name": "Foo crate",
+            "version": "0.1",
+            "description": "Foo crate description"
+        }))
+        .send()
+        .unwrap();
+    assert_eq!(response.status(), StatusCode::INTERNAL_SERVER_ERROR);
+}
+
+#[test]
 fn test_view_crate() {
     // Setup
     let client = Client::new();
